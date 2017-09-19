@@ -17,6 +17,7 @@
 
 		<!-- Mapping Files -->
 		<mapping class="annotation.Customer" />
+		<mapping class="annotation.Address" />
 
 
 	</session-factory>
