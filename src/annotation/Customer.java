@@ -10,9 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name = "customer")
@@ -35,9 +39,23 @@ public class Customer {
 	// @JoinColumn(name="address_id")
 	// private Address address;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "adcustid")
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "adcustid")
+//	private Set<Address> addresses;
+
+//	public Set<Address> getAddresses() {
+//		return addresses;
+//	}
+//
+//	public void setAddresses(Set<Address> addresses) {
+//		this.addresses = addresses;
+//	}
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="Cust_Addr",joinColumns= {@JoinColumn(name="cust_id")},inverseJoinColumns= {@JoinColumn(name="addr_id")})
 	private Set<Address> addresses;
+	
+	
 
 	public Set<Address> getAddresses() {
 		return addresses;
